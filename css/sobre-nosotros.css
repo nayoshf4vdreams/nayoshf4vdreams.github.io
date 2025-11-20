@@ -112,15 +112,25 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 0 60px;
+    position: relative;
 }
 
 .logo {
     width: auto;
+    z-index: 1001;
 }
 
 .img-logo{
     width: 220px;
     height: 70px;
+}
+
+/* Contenedor de iconos (búsqueda y carrito) */
+.nav-icons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    z-index: 1001;
 }
 
 .nav-links {
@@ -152,6 +162,38 @@ nav {
 
 .nav-links a:hover::after {
     width: 100%;
+}
+
+/* Menú hamburguesa (oculto por defecto) */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+    padding: 5px;
+}
+
+.menu-toggle span {
+    width: 28px;
+    height: 3px;
+    background: var(--dark);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
 }
 
 .search-icon, .cart-icon {
@@ -955,16 +997,7 @@ footer {
 }
 
 @media (max-width: 768px) {
-    nav {
-        padding: 0 30px;
-        flex-direction: column;
-        gap: 20px;
-    }
     
-    .nav-links {
-        gap: 20px;
-        font-size: 0.85rem;
-    }
     
     .hero h1 {
         font-size: 3.5rem;
@@ -1885,5 +1918,336 @@ footer {
     to {
         opacity: 1;
         transform: scale(1);
+    }
+}
+
+
+/* ============= RESPONSIVE DESIGN ============= */
+
+/* Tablets grandes (1024px - 1200px) */
+@media (max-width: 1200px) {
+    nav {
+        padding: 0 40px;
+    }
+    
+    .hero h1 {
+        font-size: 5rem;
+    }
+    
+    .products, .classes, .gallery {
+        padding: 100px 40px;
+    }
+}
+
+/* Tablets (768px - 1024px) */
+@media (max-width: 1024px) {
+    nav {
+        padding: 0 30px;
+    }
+    
+    .nav-links {
+        gap: 30px;
+        font-size: 0.9rem;
+    }
+    
+    .hero h1 {
+        font-size: 4rem;
+    }
+    
+    .section-title {
+        font-size: 3.5rem;
+    }
+    
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Móviles grandes y tablets verticales (menor a 768px) */
+@media (max-width: 768px) {
+    /* Header responsive con menú hamburguesa */
+    nav {
+        padding: 0 20px;
+    }
+    
+    .img-logo {
+        width: 160px;
+        height: 53px;
+    }
+    
+    /* Mostrar menú hamburguesa */
+    .menu-toggle {
+        display: flex;
+    }
+    
+    /* Menú móvil */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 75%;
+        max-width: 300px;
+        height: 100vh;
+        background: white;
+        flex-direction: column;
+        gap: 0;
+        padding: 100px 30px 30px;
+        box-shadow: 5px 0 20px rgba(139, 123, 168, 0.15);
+        transition: left 0.4s ease;
+        z-index: 1000;
+        overflow-y: auto;
+    }
+    
+    .nav-links.active {
+        left: 0;
+    }
+    
+    .nav-links li {
+        width: 100%;
+        padding: 15px 0;
+        border-bottom: 1px solid var(--primary);
+    }
+    
+    .nav-links a {
+        font-size: 1.1rem;
+        display: block;
+        padding: 5px 0;
+    }
+    
+    /* Iconos siempre visibles */
+    .nav-icons {
+        gap: 10px;
+    }
+    
+    .search-icon, .cart-icon {
+        width: 38px;
+        height: 38px;
+        font-size: 1.1rem;
+    }
+    
+    /* Hero */
+    .hero h1 {
+        font-size: 3rem;
+        line-height: 1.2;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    .cta-button {
+        padding: 14px 35px;
+        font-size: 0.9rem;
+    }
+    
+    /* Secciones */
+    .products, .classes, .gallery {
+        padding: 80px 20px;
+    }
+    
+    .section-title {
+        font-size: 2.5rem;
+    }
+    
+    /* Productos */
+    .product-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .product-image {
+        height: 280px;
+    }
+    
+    /* Clases */
+    .class-cards {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .class-card {
+        padding: 35px 25px;
+    }
+    
+    /* Galería */
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .gallery-item:nth-child(1) {
+        grid-column: span 2;
+    }
+    
+    /* Footer */
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    footer {
+        padding: 60px 20px 30px;
+    }
+    
+    /* Carrito en móvil */
+    .cart-sidebar {
+        width: 100%;
+        right: -100%;
+    }
+    
+    .cart-sidebar.active {
+        right: 0;
+    }
+}
+
+/* Móviles pequeños (menor a 480px) */
+@media (max-width: 480px) {
+    nav {
+        padding: 0 15px;
+    }
+    
+    .img-logo {
+        width: 140px;
+        height: 46px;
+    }
+    
+    .search-icon, .cart-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+    
+    .cart-count {
+        width: 18px;
+        height: 18px;
+        font-size: 0.65rem;
+    }
+    
+    /* Hero */
+    .hero {
+        padding: 0 15px;
+    }
+    
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+    
+    .hero p {
+        font-size: 0.9rem;
+        margin-bottom: 30px;
+    }
+    
+    .cta-button {
+        padding: 12px 28px;
+        font-size: 0.85rem;
+    }
+    
+    /* Secciones */
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 50px;
+    }
+    
+    .products, .classes, .gallery {
+        padding: 60px 15px;
+    }
+    
+    /* Productos */
+    .product-image {
+        height: 250px;
+    }
+    
+    .product-info {
+        padding: 20px;
+    }
+    
+    .product-name {
+        font-size: 1.4rem;
+    }
+    
+    .product-price {
+        font-size: 1.3rem;
+    }
+    
+    /* Clases */
+    .class-card {
+        padding: 30px 20px;
+    }
+    
+    .class-icon {
+        font-size: 3rem;
+    }
+    
+    .class-title {
+        font-size: 1.6rem;
+    }
+    
+    .class-price {
+        font-size: 1.6rem;
+    }
+    
+    /* Footer */
+    footer {
+        padding: 50px 15px 25px;
+    }
+    
+    .footer-section h3 {
+        font-size: 1.5rem;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+    
+    /* WhatsApp */
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .whatsapp-icon {
+        width: 28px;
+        height: 28px;
+    }
+    
+    /* Modal de búsqueda */
+    .search-box {
+        padding: 25px;
+        width: 95%;
+    }
+    
+    .search-input {
+        padding: 15px;
+        font-size: 1rem;
+    }
+    
+    .close-search {
+        width: 40px;
+        height: 40px;
+        top: 20px;
+        right: 20px;
+    }
+}
+
+/* Landscape móvil */
+@media (max-height: 600px) and (orientation: landscape) {
+    .hero {
+        height: auto;
+        min-height: 100vh;
+        padding: 120px 20px 60px;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .nav-links {
+        padding: 80px 30px 30px;
     }
 }

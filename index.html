@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NayoshF4V Dreams es una tienda de amigurumis y arte en crochet. Descubre muñecos tejidos, clases, productos únicos y hechos a mano.">
     <meta name="keywords" content="Amigurumis, Crochet,amigurumis personalizados,aigurumis unicos,clases viruales personalizadas, Nayoshf4v Dreams, nayoshf4v, amigurumis hechos a mano, regalos tejidos, arte tejido, mini coleccion amigurumis">
     <meta http-equiv="Permissions-Policy" content="accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()">
     <title>NayoshF4V Dreams | Amigurumis personalizados💜</title>
@@ -20,6 +21,13 @@
     <header>
         <nav>
             <div class="logo"><img src="img/Loguito.jpeg" alt="" class="img-logo"></div>
+            <!-- Botón hamburguesa -->
+        <button class="menu-toggle" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
             <ul class="nav-links">
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="sobreNosotros.html">Sobre Nosotros</a></li>
@@ -197,5 +205,37 @@
 <script src="js/clases.js"></script>
 <script src="js/busqueda.js"></script>
 <script src="js/inicio.js"></script>
+<script>
+
+// Toggle menú móvil
+const menuToggle = document.querySelector('.menu-toggle');
+const navLinks = document.querySelector('.nav-links');
+
+if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active');
+        navLinks.classList.toggle('active');
+    });
+    
+    // Cerrar menú al hacer click en un enlace
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            menuToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    });
+    
+    // Cerrar menú al hacer click fuera (en el overlay)
+    document.addEventListener('click', (e) => {
+        if (navLinks.classList.contains('active') && 
+            !navLinks.contains(e.target) && 
+            !menuToggle.contains(e.target)) {
+            menuToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+        }
+    });
+}
+
+</script>
 </body>
 </html>
