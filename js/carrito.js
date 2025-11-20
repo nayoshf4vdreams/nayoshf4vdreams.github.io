@@ -139,7 +139,6 @@ function clearCart() {
     cart = [];
     saveCart();
     renderCart();
-    showNotification('Carrito vaciado');
 }
 
 // ============= PROCESO DE CHECKOUT =============
@@ -313,17 +312,15 @@ function processOrder(event) {
         // Enviar por WhatsApp
         sendOrderToWhatsApp(formData);
         
-        // Mostrar confirmación
-        showOrderConfirmation(formData);
-        
         // Limpiar carrito
         clearCart();
         
-        // Volver a vista de carrito
-        checkoutStep = 'cart';
+        // Mostrar confirmación
+        showOrderConfirmation(formData);
         
-        // Cerrar carrito
-        toggleCart();
+        // Volver a vista de carrito vacío
+        checkoutStep = 'cart';
+        renderCart();
     }, 1500);
 }
 
@@ -359,49 +356,91 @@ function sendOrderToWhatsApp(orderData) {
 
 // Mostrar confirmación de orden
 function showOrderConfirmation(orderData) {
-    const confirmationHTML = `
-        <div style="
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            z-index: 10001;
-            text-align: center;
-            max-width: 400px;
-            animation: scaleIn 0.5s ease;
-        ">
-            <div style="font-size: 4rem; margin-bottom: 20px;">✅</div>
-            <h2 style="color: var(--accent); margin-bottom: 15px; font-family: 'Cormorant Garamond', serif;">¡Pedido Confirmado!</h2>
-            <p style="color: var(--text); margin-bottom: 10px;">Tu pedido ha sido enviado correctamente.</p>
-            <p style="color: var(--text); margin-bottom: 20px;">Nos pondremos en contacto contigo pronto.</p>
-            <p style="font-size: 0.9rem; color: var(--text); opacity: 0.7;">Número de orden: #${Date.now().toString().slice(-6)}</p>
-            <button onclick="this.parentElement.remove()" style="
-                margin-top: 20px;
-                padding: 12px 30px;
-                background: var(--accent);
-                color: white;
-                border: none;
-                border-radius: 25px;
-                cursor: pointer;
-                font-weight: 600;
-            ">Cerrar</button>
-        </div>
-        <div onclick="this.remove()" style="
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 10000;
-        "></div>
+    // Ocultar el carrito temporalmente
+    const cartSidebar = document.getElementById('cartSidebar');
+    if (cartSidebar) {
+        cartSidebar.style.zIndex = '1';
+    }
+    
+    const overlay = document.createElement('div');
+    overlay.id = 'confirmationOverlay';
+    overlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.6);
+        z-index: 9998 !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: fadeIn 0.3s ease;
     `;
     
-    document.body.insertAdjacentHTML('beforeend', confirmationHTML);
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        text-align: center;
+        max-width: 400px;
+        width: 90%;
+        animation: scaleIn 0.5s ease;
+        position: relative;
+        z-index: 9999 !important;
+    `;
+    
+    modal.innerHTML = `
+        <div style="font-size: 4rem; margin-bottom: 20px;">✅</div>
+        <h2 style="color: var(--accent); margin-bottom: 15px; font-family: 'Cormorant Garamond', serif;">¡Pedido Confirmado!</h2>
+        <p style="color: var(--text); margin-bottom: 10px;">Tu pedido ha sido enviado correctamente.</p>
+        <p style="color: var(--text); margin-bottom: 20px;">Nos pondremos en contacto contigo pronto.</p>
+        <p style="font-size: 0.9rem; color: var(--text); opacity: 0.7;">Número de orden: #${Date.now().toString().slice(-6)}</p>
+        <button id="closeConfirmation" style="
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            position: relative;
+            transition: all 0.3s ease;
+        ">Cerrar</button>
+    `;
+    
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+    
+    // Agregar efecto hover al botón
+    const closeBtn = document.getElementById('closeConfirmation');
+    closeBtn.onmouseenter = () => {
+        closeBtn.style.background = 'var(--dark)';
+        closeBtn.style.transform = 'scale(1.05)';
+    };
+    closeBtn.onmouseleave = () => {
+        closeBtn.style.background = 'var(--accent)';
+        closeBtn.style.transform = 'scale(1)';
+    };
+    
+    // Cerrar modal
+    const closeModal = () => {
+        overlay.style.animation = 'fadeOut 0.3s ease';
+        setTimeout(() => {
+            overlay.remove();
+            // Restaurar z-index del carrito
+            if (cartSidebar) {
+                cartSidebar.style.zIndex = '1000';
+            }
+        }, 300);
+    };
+    
+    document.getElementById('closeConfirmation').onclick = closeModal;
+    overlay.onclick = (e) => {
+        if (e.target === overlay) closeModal();
+    };
 }
 
 // ============= UTILIDADES =============
