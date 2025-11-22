@@ -1366,11 +1366,7 @@ nav {
 
 /* Móviles grandes y tablets verticales (menor a 768px) */
 @media (max-width: 768px) {
-    /* Header responsive */
-    header {
-        padding: 15px 0;
-    }
-    
+    /* Header responsive con menú hamburguesa */
     nav {
         padding: 0 20px;
     }
@@ -1695,4 +1691,5 @@ nav {
     .nav-links {
         padding: 80px 30px 30px;
     }
+
 }
