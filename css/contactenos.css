@@ -1292,13 +1292,6 @@ nav {
 
 /* ============= RESPONSIVE DESIGN ============= */
 
-/* Desktop grande (1400px+) */
-@media (min-width: 1400px) {
-    nav, .contact-section, .map-section, .footer-content {
-        max-width: 1600px;
-    }
-}
-
 /* Tablets grandes (1024px - 1200px) */
 @media (max-width: 1200px) {
     nav {
@@ -1322,13 +1315,8 @@ nav {
     }
     
     .nav-links {
-        gap: 35px;
+        gap: 30px;
         font-size: 0.9rem;
-    }
-    
-    .img-logo {
-        width: 180px;
-        height: 57px;
     }
     
     .contact-grid {
@@ -1691,5 +1679,4 @@ nav {
     .nav-links {
         padding: 80px 30px 30px;
     }
-
 }

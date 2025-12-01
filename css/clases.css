@@ -2231,7 +2231,7 @@ nav {
     }
 }
 
-/* ============= RESPONSIVE DESIGN ============= */
+/* ============= RESPONSIVE DESIGN PARA CLASES ============= */
 
 /* Tablets grandes (1024px - 1200px) */
 @media (max-width: 1200px) {
@@ -2243,7 +2243,12 @@ nav {
         font-size: 5rem;
     }
     
-    .products, .classes, .gallery {
+    .benefits-section,
+    .courses-section,
+    .process-section,
+    .testimonials-section,
+    .faq-section,
+    .schedule-section {
         padding: 100px 40px;
     }
 }
@@ -2278,7 +2283,7 @@ nav {
 
 /* Móviles grandes y tablets verticales (menor a 768px) */
 @media (max-width: 768px) {
-    /* Header responsive con menú hamburguesa */
+    /* Header con menú hamburguesa */
     nav {
         padding: 0 20px;
     }
@@ -2288,7 +2293,7 @@ nav {
         height: 53px;
     }
     
-    /* Mostrar menú hamburguesa */
+    /* Mostrar botón hamburguesa */
     .menu-toggle {
         display: flex;
     }
@@ -2324,21 +2329,25 @@ nav {
     .nav-links a {
         font-size: 1.1rem;
         display: block;
-        padding: 5px 0;
     }
     
-    /* Iconos siempre visibles */
+    /* Iconos de búsqueda y carrito */
     .nav-icons {
         gap: 10px;
     }
     
-    .search-icon, .cart-icon {
+    .search-icon,
+    .cart-icon {
         width: 38px;
         height: 38px;
         font-size: 1.1rem;
     }
     
     /* Hero */
+    .hero {
+        padding: 0 20px;
+    }
+    
     .hero h1 {
         font-size: 3rem;
         line-height: 1.2;
@@ -2354,62 +2363,246 @@ nav {
     }
     
     /* Secciones */
-    .products, .classes, .gallery {
+    .benefits-section,
+    .courses-section,
+    .process-section,
+    .testimonials-section,
+    .faq-section,
+    .schedule-section {
         padding: 80px 20px;
     }
     
     .section-title {
         font-size: 2.5rem;
+        margin-bottom: 50px;
     }
     
-    /* Productos */
-    .product-grid {
+    /* Beneficios */
+    .benefits-grid {
         grid-template-columns: 1fr;
         gap: 30px;
     }
     
-    .product-image {
-        height: 280px;
-    }
-    
-    /* Clases */
-    .class-cards {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-    
-    .class-card {
+    .benefit-card {
         padding: 35px 25px;
     }
     
-    /* Galería */
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
+    /* Cursos */
+    .level-filters {
+        gap: 10px;
     }
     
-    .gallery-item:nth-child(1) {
-        grid-column: span 2;
+    .level-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .courses-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .course-card {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .course-info {
+        padding: 30px 25px;
+    }
+    
+    .course-name {
+        font-size: 1.8rem;
+    }
+    
+    .course-price {
+        font-size: 2.2rem;
+    }
+    
+    /* Proceso */
+    .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .step-card {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    /* Testimonios */
+    .testimonials-carousel {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .testimonial-slide {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    /* FAQ */
+    .faq-question h3 {
+        font-size: 1.3rem;
+    }
+    
+    /* Schedule */
+    .schedule-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .schedule-card {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    /* Modales */
+    .modal-content {
+        padding: 35px 25px;
+        width: 95%;
+    }
+    
+    .modal-content h2 {
+        font-size: 2.2rem;
+    }
+    
+    .course-modal-image {
+        height: 300px;
     }
     
     /* Footer */
+    footer {
+        padding: 60px 20px 30px;
+    }
+    
     .footer-content {
         grid-template-columns: 1fr;
         gap: 40px;
     }
     
-    footer {
-        padding: 60px 20px 30px;
-    }
-    
-    /* Carrito en móvil */
+    /* Carrito */
     .cart-sidebar {
         width: 100%;
         right: -100%;
     }
+}
+
+/* Móviles medianos (menor a 600px) */
+@media (max-width: 600px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
     
-    .cart-sidebar.active {
-        right: 0;
+    .hero p {
+        font-size: 0.95rem;
+    }
+    
+    .section-title {
+        font-size: 2.2rem;
+        margin-bottom: 40px;
+    }
+    
+    .benefits-section,
+    .courses-section,
+    .process-section,
+    .testimonials-section,
+    .faq-section,
+    .schedule-section {
+        padding: 60px 15px;
+    }
+    
+    /* Beneficios */
+    .benefit-card {
+        padding: 30px 20px;
+    }
+    
+    .benefit-icon {
+        font-size: 3rem;
+    }
+    
+    .benefit-card h3 {
+        font-size: 1.5rem;
+    }
+    
+    /* Cursos */
+    .course-image {
+        height: 220px;
+        font-size: 5rem;
+    }
+    
+    .course-badge {
+        font-size: 0.7rem;
+        padding: 6px 12px;
+    }
+    
+    .course-info {
+        padding: 25px 20px;
+    }
+    
+    .course-name {
+        font-size: 1.6rem;
+    }
+    
+    .course-price {
+        font-size: 2rem;
+    }
+    
+    .course-details {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 15px;
+    }
+    
+    .course-actions {
+        flex-direction: column;
+    }
+    
+    .view-course-btn,
+    .enroll-btn {
+        width: 100%;
+    }
+    
+    /* Proceso */
+    .step-card {
+        padding: 35px 20px;
+    }
+    
+    .step-icon {
+        font-size: 3rem;
+    }
+    
+    .step-card h3 {
+        font-size: 1.5rem;
+    }
+    
+    /* Testimonios */
+    .testimonial-slide {
+        padding: 35px 25px;
+    }
+    
+    .student-image {
+        width: 80px;
+        height: 80px;
+        font-size: 3rem;
+    }
+    
+    /* Schedule */
+    .schedule-month {
+        font-size: 1.1rem;
+        padding: 15px;
+    }
+    
+    .schedule-details {
+        padding: 25px 20px;
+    }
+    
+    .schedule-details h3 {
+        font-size: 1.6rem;
+    }
+    
+    .schedule-details p {
+        font-size: 0.95rem;
     }
 }
 
