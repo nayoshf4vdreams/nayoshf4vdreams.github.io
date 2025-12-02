@@ -1,34 +1,35 @@
 const productsData = [
     {
         id: 1,
-        name: 'Burro Tierno',
-        category: 'animales',
-        image: 'img/burro.jpg',
-        price: 45,
-        description: 'Adorable burrito tejido con hilos premium de al. Perfecto para regalar o decorar cualquier espacio.',
+        name: 'Mira "K-Pop Demon Hunters"',
+        category: 'Kpop',
+        image: 'img/mira.jpeg',
+        price: 85,
+        description: 'Mini cazadora de “K-Pop Demon Hunters” en versión amigurumi: tierna, detallada y lista para defender tu colección.',
         features: [
             'Tejido 100% a mano',
-            'Algodón orgánico premium',
+            'Algodón orgánico',
             'Relleno hipoalergénico',
-            'Altura: 25cm',
-            'Lavable a mano'
+            'Altura: 13cm',
+            'Perfecta para colección y decoración'
         ],
-        badge: 'Popular'
+        badge: 'Nuevo'
     },
     {
         id: 2,
-        name: 'Ave Fenix',
+        name: 'Elefante PHP',
         category: 'animales',
-        price: 42,
-        image:'img/fenix.jpg',
-        description: 'Suave avecita con detalles bordados a mano y alas largas. Ideal para bebés y niños pequeños.',
+        price: 200,
+        image:'img/elefante.jpeg',
+        description: 'Lleva el espíritu de PHP a tu escritorio con este tierno elefante amigurumi, tejido con detalles increíbles.',
         features: [
             'Detalles bordados a mano',
-            'Hilos suaves y seguros',
-            'Ojos bordados (sin piezas pequeñas)',
-            'Altura: 22cm',
-            'Certificado para niños'
-        ]
+            'Algodón suave y seguro',
+            'Ojos tejidos (sin piezas pequeñas)',
+            'Altura: 19cm',
+            'Certificado para desarrolladores'
+        ],
+        badge: 'Nuevo'
     },
     {
         id: 3,
@@ -44,7 +45,6 @@ const productsData = [
             'Altura: 28cm',
             'Edición especial'
         ],
-        badge: 'Nuevo'
     },
     {
         id: 4,
@@ -121,7 +121,6 @@ const productsData = [
             'Altura: 18cm',
             'Super tierno'
         ],
-        badge: 'Nuevo'
     },
     {
         id: 9,
